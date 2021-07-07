@@ -1,7 +1,8 @@
 ##### List Security Group #####
 resource "aws_security_group" "sec_group_default" {
-  name = "sec_group_default"
-  description = "Security group Default"
+  name         = "sec_group_default"
+  vpc_id       = aws_vpc.main.id
+  description  = "Security group Default"
   egress {
     from_port        = 0
     to_port          = 0
@@ -12,8 +13,9 @@ resource "aws_security_group" "sec_group_default" {
 }
 
 resource "aws_security_group" "sec_group_web" {
-  name = "sec_group_web_app"
-  description = "Security group for Web application"
+  name         = "sec_group_web_app"
+  vpc_id       = aws_vpc.main.id
+  description  = "Security group for Web application"
 }
 
 ##### List Rules #####
