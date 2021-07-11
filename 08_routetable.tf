@@ -41,7 +41,7 @@ resource "aws_route_table" "public_route_table-a" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/24"
-    gateway_id = aws_internet_gateway.internetgw.id
+    gateway_id = aws_internet_gateway.internet-gw.id
   }
   tags = {
     Name = "Public Route table-a"
@@ -58,7 +58,7 @@ resource "aws_route_table" "public_route_table-b" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/24"
-    gateway_id = aws_internet_gateway.internetgw.id
+    gateway_id = aws_internet_gateway.internet-gw.id
   }
   tags = {
     Name = "Public Route table-b"

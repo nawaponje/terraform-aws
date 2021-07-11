@@ -33,7 +33,7 @@ resource "aws_lb_target_group_attachment" "zone-b" {
 
 ##### loadbalance inbound from internet
 resource "aws_lb_listener" "lb-inbound" {
-  loadload_balancer_arn = aws_lb.web_app_lb.arn
+  load_balancer_arn = aws_lb.web_app_lb.arn
   port                  = "80"
   protocol              = "HTTP"
 
