@@ -7,6 +7,7 @@ resource "aws_instance" "web-1" {
   key_name                = "nawapon-aws-key"
   subnet_id               = aws_subnet.private_a.id
   vpc_security_group_ids  = [aws_security_group.sec_group_default.id,aws_security_group.sec_group_web.id]
+  associate_public_ip_address = true
   user_data               = <<EOF
 #!/bin/bash
 sudo apt update -y
@@ -27,6 +28,7 @@ resource "aws_instance" "web-2" {
   key_name                = "nawapon-aws-key"
   subnet_id               = aws_subnet.private_b.id
   vpc_security_group_ids  = [aws_security_group.sec_group_default.id,aws_security_group.sec_group_web.id]
+  associate_public_ip_address = true
   user_data               = <<EOF
 #!/bin/bash
 sudo apt update -y
