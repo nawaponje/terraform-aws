@@ -1,3 +1,4 @@
+##### Platform Provider #####
 provider "aws" {
   region = var.aws_region_zone
   access_key = var.aws_access_key_id

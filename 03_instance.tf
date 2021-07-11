@@ -1,5 +1,7 @@
 ##### List Instance #####
-resource "aws_instance" "web-server" {
+
+####-- instance web-1 zone-a --####
+resource "aws_instance" "web-1" {
   ami                     = "ami-0d058fe428540cd89"
   instance_type           = "t2.micro"
   key_name                = "nawapon-aws-key"
@@ -7,12 +9,33 @@ resource "aws_instance" "web-server" {
   vpc_security_group_ids  = [aws_security_group.sec_group_default.id,aws_security_group.sec_group_web.id]
   user_data               = <<EOF
 #!/bin/bash
-apt update -y
-apt install -y apache2
-systemctl start apache2
+sudo apt update -y
+sudo apt install -y nginx
+sudo sed -i 's/Welcome to nginx/Welcome to Web-1/g' /var/www/html/index.nginx-debian.html
+sudo systemctl restart nginx
 EOF
   tags = {
-    Name  = "Web-Server"
+    Name  = "Web-1"
+    Owner = "NawaponJe-Owner"
+  }
+}
+
+####-- instance web-2 zone-b --####
+resource "aws_instance" "web-2" {
+  ami                     = "ami-0d058fe428540cd89"
+  instance_type           = "t2.micro"
+  key_name                = "nawapon-aws-key"
+  subnet_id               = aws_subnet.private_b.id
+  vpc_security_group_ids  = [aws_security_group.sec_group_default.id,aws_security_group.sec_group_web.id]
+  user_data               = <<EOF
+#!/bin/bash
+sudo apt update -y
+sudo apt install -y nginx
+sudo sed -i 's/Welcome to nginx/Welcome to Web-2/g' /var/www/html/index.nginx-debian.html
+sudo systemctl restart nginx
+EOF
+  tags = {
+    Name  = "Web-2"
     Owner = "NawaponJe-Owner"
   }
 }
