@@ -5,7 +5,7 @@ resource "aws_lb" "web_app_lb" {
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.sec_group_default.id,aws_security_group.sec_group_web.id]
   subnets                    = [aws_subnet.public_a.id,aws_subnet.public_b.id]
-  enable_deletion_protection = true
+  enable_deletion_protection = false
   tags = {
     Name = "web_app_lb"
   }
